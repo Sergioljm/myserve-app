@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import MobileHeader from "./components/Layout/MobileHeader";
-import BottomNavigation from "./components/Layout/BottomNavigation";
-import Home from "./pages/Home";
-import Services from "./pages/Services";
-import ProfessionalProfile from "./pages/ProfessionalProfile";
-import Bookings from "./pages/Bookings";
-import Favorites from "./pages/Favorites";
-import Profile from "./pages/Profile";
+import MobileHeader from "./components/Layout/MobileHeader.jsx";
+import BottomNavigation from "./components/Layout/BottomNavigation.jsx";
+import Home from "./pages/Home.jsx";
+import Services from "./pages/Services.jsx";
+import ProfessionalProfile from "./pages/ProfessionalProfile.jsx";
+import Bookings from "./pages/Bookings.jsx";
+import Favorites from "./pages/Favorites.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const AppLayout = () => {
   const location = useLocation();
