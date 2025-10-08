@@ -40,15 +40,15 @@ const Home = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center">
+          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center shadow-sm">
             <div className="text-xl font-bold text-gray-900">2.500+</div>
             <div className="text-xs text-gray-600">Profissionais</div>
           </div>
-          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center">
+          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center shadow-sm">
             <div className="text-xl font-bold text-gray-900">4.8⭐</div>
             <div className="text-xs text-gray-600">Avaliação</div>
           </div>
-          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center">
+          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center shadow-sm">
             <div className="text-xl font-bold text-gray-900">15k+</div>
             <div className="text-xs text-gray-600">Agendamentos</div>
           </div>
@@ -65,27 +65,59 @@ const Home = () => {
           </Button>
         </div>
 
-        {/* Categories Grid */}
-      <div className="grid grid-cols-2 gap-4">
-  {serviceCategories.slice(0, 6).map((category) => (
-    <div
-      key={category.id}
-      onClick={() => navigate('/services')}
-      className="bg-gray-50 rounded-2xl p-4 active:scale-95 transition-all duration-150 border border-gray-100"
-    >
-      <div className={`w-12 h-12 ${category.color} rounded-xl flex items-center justify-center mb-3 text-white font-bold`}>
-        <span className="text-xl">{category.icon}</span>
-      </div>
-      <h3 className="font-semibold text-base text-gray-900 mb-1">
-        {category.name}
-      </h3>
-      <p className="text-sm text-gray-500">
-        {category.services.length} serviços
-      </p>
-    </div>
-  ))}
-</div>
+        {/* Categories Grid - IGUAL AO PREVIEW */}
+        <div className="grid grid-cols-2 gap-4">
+          {serviceCategories.slice(0, 6).map((category) => (
+            <div
+              key={category.id}
+              onClick={() => navigate('/services')}
+              className="bg-white rounded-2xl p-4 shadow-lg border border-gray-100 active:scale-95 transition-all duration-150 hover:shadow-xl"
+            >
+              <div className={`w-12 h-12 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mb-3 shadow-md`}>
+                <span className="text-xl text-white">{category.icon}</span>
+              </div>
+              <h3 className="font-semibold text-base text-gray-900 mb-1">
+                {category.name}
+              </h3>
+              <p className="text-sm text-gray-500">
+                {category.services.length} serviços
+              </p>
+              <div className="mt-2 flex items-center text-xs text-pink-600 font-medium">
+                Ver profissionais
+                <ChevronRight className="h-3 w-3 ml-1" />
+              </div>
+            </div>
           ))}
+        </div>
+
+        {/* Popular Services */}
+        <div className="mt-8">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Mais procurados</h3>
+          <div className="space-y-3">
+            {[
+              { name: 'Corte Feminino', price: 'A partir de R$ 35', category: '💇‍♀️' },
+              { name: 'Barba & Bigode', price: 'A partir de R$ 25', category: '✂️' },
+              { name: 'Manicure', price: 'A partir de R$ 30', category: '💅' },
+              { name: 'Design de Sobrancelhas', price: 'A partir de R$ 40', category: '🤩' }
+            ].map((service, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 active:bg-gray-50 transition-colors"
+                onClick={() => navigate('/services', { state: { searchTerm: service.name } })}
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center shadow-sm">
+                    <span className="text-lg">{service.category}</span>
+                  </div>
+                  <div>
+                    <div className="font-medium text-gray-900">{service.name}</div>
+                    <div className="text-sm text-gray-500">{service.price}</div>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-gray-400" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
