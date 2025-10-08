@@ -3,54 +3,84 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { MapPin, Search, ChevronRight } from 'lucide-react';
-import { serviceCategories } from '../data/mockData';
 
 const Home = () => {
   const navigate = useNavigate();
 
+  const serviceCategories = [
+    {
+      id: 1,
+      name: 'Cabelo',
+      icon: '✂️',
+      services: 6,
+      color: 'bg-gradient-to-br from-pink-400 to-pink-500'
+    },
+    {
+      id: 2,
+      name: 'Barbearia',
+      icon: '💈',
+      services: 5,
+      color: 'bg-gradient-to-br from-blue-400 to-blue-500'
+    },
+    {
+      id: 3,
+      name: 'Maquiagem',
+      icon: '💄',
+      services: 4,
+      color: 'bg-gradient-to-br from-purple-400 to-purple-500'
+    },
+    {
+      id: 4,
+      name: 'Sobrancelhas',
+      icon: '👁️',
+      services: 4,
+      color: 'bg-gradient-to-br from-orange-400 to-orange-500'
+    }
+  ];
+
   return (
-    <div className="bg-white min-h-full">
+    <div className="bg-gray-50 min-h-full">
       {/* Hero Section */}
-      <div className="px-4 py-6 bg-gradient-to-br from-pink-50 to-violet-50">
+      <div className="px-4 py-6 bg-white">
         {/* Location */}
-        <div className="flex items-center mb-4 text-gray-600">
+        <div className="flex items-center justify-center mb-6 text-gray-600">
           <MapPin className="h-4 w-4 mr-1" />
           <span className="text-sm">São Paulo, SP</span>
         </div>
 
         {/* Greeting */}
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold text-gray-900 mb-3">
             Olá! 👋
           </h1>
-          <p className="text-gray-600 text-base">
+          <p className="text-gray-500 text-base">
             Que serviço você está procurando hoje?
           </p>
         </div>
 
         {/* Search */}
-        <div className="relative mb-6">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <div className="relative mb-8 max-w-sm mx-auto">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
           <Input
             placeholder="Cabelo, barba, manicure..."
-            className="pl-12 h-12 text-base bg-white border-0 shadow-sm rounded-xl"
+            className="pl-12 h-14 text-base bg-gray-50 border-0 rounded-2xl text-center"
             onClick={() => navigate('/services')}
           />
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center shadow-sm">
-            <div className="text-xl font-bold text-gray-900">2.500+</div>
-            <div className="text-xs text-gray-600">Profissionais</div>
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-900">2.500+</div>
+            <div className="text-sm text-gray-500">Profissionais</div>
           </div>
-          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center shadow-sm">
-            <div className="text-xl font-bold text-gray-900">4.8⭐</div>
-            <div className="text-xs text-gray-600">Avaliação</div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-900">4.8 ⭐</div>
+            <div className="text-sm text-gray-500">Avaliação</div>
           </div>
-          <div className="bg-white/70 backdrop-blur rounded-xl p-4 text-center shadow-sm">
-            <div className="text-xl font-bold text-gray-900">15k+</div>
-            <div className="text-xs text-gray-600">Agendamentos</div>
+          <div className="text-center">
+            <div className="text-2xl font-bold text-gray-900">15k+</div>
+            <div className="text-sm text-gray-500">Agendamentos</div>
           </div>
         </div>
       </div>
@@ -59,65 +89,31 @@ const Home = () => {
       <div className="px-4 py-6 bg-white">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-gray-900">Categorias</h2>
-          <Button variant="ghost" size="sm" className="text-pink-600 -mr-2">
+          <Button variant="ghost" size="sm" className="text-pink-500 font-medium">
             Ver todas
             <ChevronRight className="h-4 w-4 ml-1" />
           </Button>
         </div>
 
-        {/* Categories Grid - IGUAL AO PREVIEW */}
+        {/* Categories Grid - 2x2 igual ao preview */}
         <div className="grid grid-cols-2 gap-4">
-          {serviceCategories.slice(0, 6).map((category) => (
+          {serviceCategories.map((category) => (
             <div
               key={category.id}
               onClick={() => navigate('/services')}
-              className="bg-white rounded-2xl p-4 shadow-lg border border-gray-100 active:scale-95 transition-all duration-150 hover:shadow-xl"
+              className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 active:scale-95 transition-all duration-150"
             >
-              <div className={`w-12 h-12 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mb-3 shadow-md`}>
+              <div className={`w-14 h-14 ${category.color} rounded-2xl flex items-center justify-center mb-4 shadow-sm`}>
                 <span className="text-xl text-white">{category.icon}</span>
               </div>
-              <h3 className="font-semibold text-base text-gray-900 mb-1">
+              <h3 className="font-semibold text-lg text-gray-900 mb-1">
                 {category.name}
               </h3>
               <p className="text-sm text-gray-500">
-                {category.services.length} serviços
+                {category.services} serviços
               </p>
-              <div className="mt-2 flex items-center text-xs text-pink-600 font-medium">
-                Ver profissionais
-                <ChevronRight className="h-3 w-3 ml-1" />
-              </div>
             </div>
           ))}
-        </div>
-
-        {/* Popular Services */}
-        <div className="mt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Mais procurados</h3>
-          <div className="space-y-3">
-            {[
-              { name: 'Corte Feminino', price: 'A partir de R$ 35', category: '💇‍♀️' },
-              { name: 'Barba & Bigode', price: 'A partir de R$ 25', category: '✂️' },
-              { name: 'Manicure', price: 'A partir de R$ 30', category: '💅' },
-              { name: 'Design de Sobrancelhas', price: 'A partir de R$ 40', category: '🤩' }
-            ].map((service, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 active:bg-gray-50 transition-colors"
-                onClick={() => navigate('/services', { state: { searchTerm: service.name } })}
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl flex items-center justify-center shadow-sm">
-                    <span className="text-lg">{service.category}</span>
-                  </div>
-                  <div>
-                    <div className="font-medium text-gray-900">{service.name}</div>
-                    <div className="text-sm text-gray-500">{service.price}</div>
-                  </div>
-                </div>
-                <ChevronRight className="h-5 w-5 text-gray-400" />
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </div>
